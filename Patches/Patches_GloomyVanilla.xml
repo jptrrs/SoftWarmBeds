@@ -4,6 +4,7 @@
 	<Operation Class="PatchOperationFindMod">
 		<mods>
 			<li>Gloomy Vanilla</li>
+			<li>Gloomy Vanilla Overhaul</li>
 		</mods>
 		<match Class="PatchOperationSequence">
 			<success>Always</success>

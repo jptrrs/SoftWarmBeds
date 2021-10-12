@@ -75,7 +75,6 @@
           <xpath>/Defs/ThingDef[defName = "Crib"]</xpath>
           <value>
             <uiIconPath/>
-            <uiIconScale>1.66</uiIconScale>
           </value>
         </li>
         <li Class="JPTools.PatchOperationCopy">

@@ -21,7 +21,7 @@ namespace SoftWarmBeds
                     bool invertedColorDisplay = (SoftWarmBedsSettings.colorDisplayOption == ColorDisplayOption.Blanket);
                     if (!forPrisoners && !medical && !invertedColorDisplay)
                     {
-                        if (bedComp != null && bedComp.loaded && bedComp.blanketDef == null) // bedding color for beds that are made
+                        if (bedComp != null && bedComp.Loaded && bedComp.blanketDef == null) // bedding color for beds that are made
                         {
                             __result = bedComp.blanketStuff.stuffProps.color;
                         }

@@ -13,7 +13,7 @@ namespace SoftWarmBeds
             if (__instance is Building_Bed bed)
             {
                 CompMakeableBed bedComp = bed.TryGetComp<CompMakeableBed>();
-                if (bedComp != null && bedComp.loaded && bedComp.NotTheBlanket)
+                if (bedComp != null && bedComp.Loaded && bedComp.NotTheBlanket)
                 {
                     bedComp.Unmake();
                 }

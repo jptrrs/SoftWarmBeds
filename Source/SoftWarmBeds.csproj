@@ -124,6 +124,7 @@
     <Compile Include="DefOfs.cs" />
     <Compile Include="Harmony\ComfortableTemperatureRange_Patch.cs" />
     <Compile Include="Harmony\Compatibility\Hospitality_Patch_1.3.cs" />
+    <None Include="Harmony\Pawn_TickRare_Patch.cs" />
     <Compile Include="Harmony\DeSpawn_Patch.cs" />
     <Compile Include="Harmony\DrawColorTwo_Patch.cs" />
     <Compile Include="Harmony\ExplanationPart_Patch.cs" />

@@ -9,19 +9,24 @@ namespace SoftWarmBeds
 {
     public class CompMakeableBed : CompFlickable , IStoreSettingsParent
     {
-        public ThingDef allowedBedding;
-        public Thing blanket = null;
-        public ThingDef blanketDef = null;
-        public Color BlanketDefaultColor = new Color(1f, 1f, 1f);
-        public ThingDef blanketStuff = null;
-        public bool loaded = false;
-        public ThingDef loadedBedding;
-        public bool NotTheBlanket = true;
-        public StorageSettings settings;
+        public bool
+            //loaded = false,
+            NotTheBlanket = true;
         private float curRotationInt;
+        public ThingDef
+            allowedBedding,
+            //loadedBedding,
+            blanketDef = null,
+            blanketStuff = null;
+        public Thing 
+            blanket = null,
+            loadedBedding;
+        public Color BlanketDefaultColor = new Color(1f, 1f, 1f);
+        public StorageSettings settings;
 
-        private FieldInfo baseWantSwitchInfo = AccessTools.Field(typeof(CompFlickable), "wantSwitchOn");
-        private FieldInfo baseSwitchOnIntInfo = AccessTools.Field(typeof(CompFlickable), "switchOnInt");
+        private FieldInfo 
+            baseWantSwitchInfo = AccessTools.Field(typeof(CompFlickable), "wantSwitchOn"),
+            baseSwitchOnIntInfo = AccessTools.Field(typeof(CompFlickable), "switchOnInt");
 
         public bool switchOnInt
         {
@@ -47,45 +52,16 @@ namespace SoftWarmBeds
             }
         }
 
-        public bool Loaded
-        {
-            get
-            {
-                return LoadedBedding != null;
-            }
-        }
+        public bool Loaded => LoadedBedding != null; 
 
-        public ThingDef LoadedBedding
-        {
-            get
-            {
-                return loadedBedding;
-            }
-        }
+        //public ThingDef LoadedBedding => loadedBedding;
+        public Thing LoadedBedding => loadedBedding;
 
-        public CompProperties_MakeableBed Props
-        {
-            get
-            {
-                return (CompProperties_MakeableBed)props;
-            }
-        }
+        public CompProperties_MakeableBed Props => (CompProperties_MakeableBed)props;
 
-        public bool StorageTabVisible
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool StorageTabVisible => true;
 
-        private Building_Bed BaseBed
-        {
-            get
-            {
-                return parent as Building_Bed;
-            }
-        }
+        private Building_Bed BaseBed => parent as Building_Bed;
 
         private float CurRotation
         {
@@ -107,13 +83,7 @@ namespace SoftWarmBeds
             }
         }
 
-        private bool Occupied
-        {
-            get
-            {
-                return BaseBed.CurOccupants != null;
-            }
-        }
+        private bool Occupied => BaseBed.CurOccupants != null; 
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
@@ -121,7 +91,7 @@ namespace SoftWarmBeds
             {
                 yield return gizmo;
             }
-            if (loaded)
+            if (Loaded)
             {
                 if (SoftWarmBedsSettings.manuallyUnmakeBed)
                 {
@@ -137,10 +107,10 @@ namespace SoftWarmBeds
                     {
                         defaultLabel = Props.commandLabelKey.Translate(),
                         defaultDesc = Props.commandDescKey.Translate(),
-                        icon = LoadedBedding.uiIcon,
-                        iconAngle = LoadedBedding.uiIconAngle,
-                        iconOffset = LoadedBedding.uiIconOffset,
-                        iconDrawScale = GenUI.IconDrawScale(LoadedBedding),
+                        icon = LoadedBedding.def.uiIcon,
+                        iconAngle = LoadedBedding.def.uiIconAngle,
+                        iconOffset = LoadedBedding.def.uiIconOffset,
+                        iconDrawScale = GenUI.IconDrawScale(LoadedBedding.def),
                         action = delegate ()
                         {
                             Unmake();
@@ -222,8 +192,9 @@ namespace SoftWarmBeds
         //modified from CompChangeableProjectiles
         public void LoadBedding(Thing bedding)
         {
-            loaded = true;
-            loadedBedding = bedding.def;
+            //loaded = true;
+            //loadedBedding = bedding.def;
+            loadedBedding = bedding;
             blanketStuff = bedding.Stuff;
             //if (this.bedding.TryGetComp<CompColorable>().Active) //test
             //{
@@ -235,7 +206,7 @@ namespace SoftWarmBeds
             //}
             if (blanketDef != null)
             {
-                this.blanket = ThingMaker.MakeThing(blanketDef, blanketStuff);
+                blanket = ThingMaker.MakeThing(blanketDef, blanketStuff);
                 //Building_Blanket blanket = this.bedding as Building_Blanket;
                 //blanket.TryGetComp<CompColorable>().Color = blanketColor;
                 //blanket.hasColor = true;
@@ -254,8 +225,9 @@ namespace SoftWarmBeds
 
         public override void PostExposeData()
         {
-            Scribe_Values.Look<bool>(ref loaded, "loaded", false, false);
-            Scribe_Defs.Look<ThingDef>(ref loadedBedding, "loadedBedding");
+            //Scribe_Values.Look<bool>(ref loaded, "loaded", false, false);
+            //Scribe_Defs.Look<Thingef>(ref loadedBedding, "loadedBedding");
+            Scribe_Deep.Look<Thing>(ref loadedBedding, "loadedBedding", new object[0]);
             Scribe_Deep.Look<Thing>(ref blanket, "bedding", new object[0]);
             Scribe_Defs.Look<ThingDef>(ref blanketStuff, "blanketStuff");
             //if (loaded && blanketDef != null)
@@ -284,13 +256,13 @@ namespace SoftWarmBeds
         }
 
         //modified from CompChangeableProjectiles to accept stuff
-        public Thing RemoveBedding(ThingDef stuff)
-        {
-            Thing thing = ThingMaker.MakeThing(loadedBedding, stuff);
-            loaded = false;
-            loadedBedding = null;
-            return thing;
-        }
+        //public Thing RemoveBedding(ThingDef stuff)
+        //{
+        //    Thing thing = ThingMaker.MakeThing(loadedBedding, stuff);
+        //    loaded = false;
+        //    loadedBedding = null;
+        //    return thing;
+        //}
 
         public void SetUpStorageSettings()
         {
@@ -318,9 +290,16 @@ namespace SoftWarmBeds
 
         public void DoUnmake()
         {
-            ThingDef stuff = blanketStuff;
-            GenPlace.TryPlaceThing(RemoveBedding(stuff), BaseBed.Position, BaseBed.Map, ThingPlaceMode.Near, null, null);
-            BaseBed.Notify_ColorChanged();
+            if (LoadedBedding == null)
+            {
+                Log.Warning("[SoftWarmBeds] Tried to unmake a bed with no loaded bedding");
+            }
+            //ThingDef stuff = blanketStuff;
+            if (GenPlace.TryPlaceThing(/*RemoveBedding(stuff)*/LoadedBedding, BaseBed.Position, BaseBed.Map, ThingPlaceMode.Near, null, null))
+            {
+                loadedBedding = null;
+                BaseBed.Notify_ColorChanged();
+            }
         }
     }
 }

@@ -31,7 +31,7 @@ namespace SoftWarmBeds
                     CompMakeableBed bedComp = bed.TryGetComp<CompMakeableBed>();
                     if (bedComp != null)
                     {
-                        return !bedComp.loaded;
+                        return !bedComp.Loaded;
                     }
                 }
             }

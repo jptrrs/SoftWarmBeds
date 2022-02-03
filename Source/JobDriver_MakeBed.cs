@@ -6,35 +6,17 @@ namespace SoftWarmBeds
 {
     public class JobDriver_MakeBed : JobDriver
     {
-        private const TargetIndex BeddingInd = TargetIndex.B;
-
-        private const TargetIndex MakeableInd = TargetIndex.A;
+        private const TargetIndex 
+            BeddingInd = TargetIndex.B,
+            MakeableInd = TargetIndex.A;
 
         private const int MakingDuration = 180;
 
-        protected Thing Bed
-        {
-            get
-            {
-                return job.GetTarget(TargetIndex.A).Thing;
-            }
-        }
+        protected Thing Bed => job.GetTarget(TargetIndex.A).Thing;
 
-        protected CompMakeableBed bedComp
-        {
-            get
-            {
-                return Bed.TryGetComp<CompMakeableBed>();
-            }
-        }
+        protected CompMakeableBed bedComp => Bed.TryGetComp<CompMakeableBed>();
 
-        protected Thing Bedding
-        {
-            get
-            {
-                return job.GetTarget(TargetIndex.B).Thing;
-            }
-        }
+        protected Thing Bedding => job.GetTarget(TargetIndex.B).Thing;
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
@@ -73,7 +55,8 @@ namespace SoftWarmBeds
             {
                 Pawn actor = makeTheBed.actor;
                 bedComp.LoadBedding(actor.CurJob.targetB.Thing);
-                actor.carryTracker.innerContainer.ClearAndDestroyContents(DestroyMode.Vanish);
+                //actor.carryTracker.innerContainer.ClearAndDestroyContents(DestroyMode.Vanish);
+                actor.carryTracker.innerContainer.Clear();
             };
             makeTheBed.defaultCompleteMode = ToilCompleteMode.Instant;
             makeTheBed.FailOnDespawnedOrNull(TargetIndex.A);

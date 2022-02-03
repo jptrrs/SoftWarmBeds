@@ -50,7 +50,9 @@ namespace SoftWarmBeds
 
         public static float colorWash = 0.4f;
 
-        public static bool manuallyUnmakeBed = false;
+        public static bool 
+            manuallyUnmakeBed = false,
+            allowColorVariation = true;
 
         public static void DoWindowContents(Rect inRect)
         {
@@ -83,6 +85,8 @@ namespace SoftWarmBeds
                 listing.Label("ColorWashLevel".Translate() + ": " + colorWashPercent + "%", -1f, null);
             }
             colorWash = listing.Slider(colorWash, 0f, 1f);
+            listing.CheckboxLabeled("allowColorVariation".Translate(), ref allowColorVariation, "allowColorVariationTooltip".Translate());
+            listing.Gap(12f);
             listing.CheckboxLabeled("manuallyUnmakeBed".Translate(), ref manuallyUnmakeBed, "manuallyUnmakeBedTooltip".Translate());
             listing.Gap(12f);
             if (listing.ButtonText("Reset", null))
@@ -90,6 +94,7 @@ namespace SoftWarmBeds
                 colorDisplayOption = ColorDisplayOption.Pillow;
                 colorWash = 0.4f;
                 manuallyUnmakeBed = false;
+                allowColorVariation = true;
             }
             listing.End();
         }
@@ -99,6 +104,7 @@ namespace SoftWarmBeds
             Scribe_Values.Look(ref colorDisplayOption, "colorDisplayOption", ColorDisplayOption.Pillow);
             Scribe_Values.Look(ref colorWash, "colorWash", 0.4f);
             Scribe_Values.Look(ref manuallyUnmakeBed, "manuallyUnmakeBed", false);
+            Scribe_Values.Look(ref allowColorVariation, "allowColorVariation", true);
             base.ExposeData();
         }
     }

@@ -14,6 +14,8 @@
   <ColorWashTotal>Pure white linen. Who needs color clues?</ColorWashTotal>
   <manuallyUnmakeBed>Require a colonist to unmake beds (Miyuri mode)</manuallyUnmakeBed>
   <manuallyUnmakeBedTooltip>If checked, the unmake bed command will add a designator instead of dropping the bedding automatically.</manuallyUnmakeBedTooltip>
+  <allowColorVariation>Take the color variations from the bedding when the bed is made.</allowColorVariation>
+  <allowColorVariationTooltip>Allows any custom colors assigned to the beddings to show up on the bed when they're made</allowColorVariationTooltip>
   
   <!--ui-->
   <TabBedding>Make Bed</TabBedding>

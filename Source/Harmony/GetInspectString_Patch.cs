@@ -11,24 +11,21 @@ namespace SoftWarmBeds
     {
         public static void Postfix(object __instance, ref string __result)
         {
-            if (__instance is Building_Bed bed)
+            if (!(__instance is Building_Bed bed)) return;
+            CompMakeableBed bedComp = bed.TryGetComp<CompMakeableBed>();
+            if (bedComp == null) return;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine();
+            if (bedComp.Loaded)
             {
-                CompMakeableBed bedComp = bed.TryGetComp<CompMakeableBed>();
-                if (bedComp != null)
-                {
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.AppendLine();
-                    if (bedComp.Loaded)
-                    {
-                        stringBuilder.AppendLine("BedMade".Translate(bedComp.blanketStuff.LabelCap, bedComp.blanketStuff));
-                    }
-                    else
-                    {
-                        stringBuilder.AppendLine("BedNotMade".Translate());
-                    }
-                    __result += stringBuilder.ToString().TrimEndNewlines();
-                }
+                float health = (float)bedComp.loadedBedding.HitPoints / (float)bedComp.loadedBedding.MaxHitPoints;
+                stringBuilder.AppendLine("BedMade".Translate(bedComp.blanketStuff.LabelCap, bedComp.blanketStuff, health.ToStringPercent()));
             }
+            else
+            {
+                stringBuilder.AppendLine("BedNotMade".Translate());
+            }
+            __result += stringBuilder.ToString().TrimEndNewlines();
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Verse;
+using HarmonyLib;
 
 namespace SoftWarmBeds
 {
@@ -19,6 +20,7 @@ namespace SoftWarmBeds
         public SoftWarmBedsMod(ModContentPack content) : base(content)
         {
             settings = GetSettings<SoftWarmBedsSettings>();
+            Harmony.DEBUG = true;
         }
 
         public override void DoSettingsWindowContents(Rect inRect)

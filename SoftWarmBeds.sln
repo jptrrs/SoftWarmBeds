@@ -663,9 +663,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.3", "1.3", "{B470C671-8E71-41F9-80DE-44FEB2881188}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assemblies", "Assemblies", "{A324D346-A630-41F9-97D8-FA84116B81B7}"
-	ProjectSection(SolutionItems) = preProject
-		1.3\Assemblies\SoftWarmBeds.dll = 1.3\Assemblies\SoftWarmBeds.dll
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Defs", "Defs", "{BAFE9276-8F8B-438E-A51A-D2963094BE8C}"
 	ProjectSection(SolutionItems) = preProject

@@ -136,11 +136,15 @@
     <techLevel>Medieval</techLevel>
     <drawGUIOverlay>true</drawGUIOverlay>
     <statBases>
-      <MaxHitPoints>100</MaxHitPoints>
+      <MaxHitPoints>240</MaxHitPoints>
       <Flammability>1.0</Flammability>
       <DeteriorationRate>2</DeteriorationRate>
       <Beauty>-3</Beauty>
     </statBases>
+    <apparel>
+      <careIfWornByCorpse>True</careIfWornByCorpse>
+      <wearPerDay>0.04</wearPerDay>
+    </apparel>
     <altitudeLayer>Item</altitudeLayer>
     <alwaysHaulable>True</alwaysHaulable>
     <tickerType>Never</tickerType>
@@ -167,7 +171,7 @@
     </stuffCategories>
     <tradeability>Sellable</tradeability>
     <statBases>
-      <MaxHitPoints>100</MaxHitPoints>
+      <!--<MaxHitPoints>100</MaxHitPoints>-->
       <WorkToMake>600</WorkToMake>
       <Mass>10</Mass>
     </statBases>
@@ -199,7 +203,7 @@
     </stuffCategories>
     <tradeability>Sellable</tradeability>
     <statBases>
-      <MaxHitPoints>100</MaxHitPoints>
+      <MaxHitPoints>360</MaxHitPoints>
       <WorkToMake>1000</WorkToMake>
       <Mass>18</Mass>
     </statBases>

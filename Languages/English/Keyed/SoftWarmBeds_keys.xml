@@ -19,7 +19,7 @@
   
   <!--ui-->
   <TabBedding>Make Bed</TabBedding>
-  <BedMade>This bed is made in {1_label}.</BedMade>
+  <BedMade>This bed is made in {1_label} ({2}).</BedMade>
   <BedNotMade>This bed isn't made.</BedNotMade>
   <NoBeddings>No Beddings</NoBeddings>
   <NoSuitableBedding>There are no suitable beddings available.</NoSuitableBedding>

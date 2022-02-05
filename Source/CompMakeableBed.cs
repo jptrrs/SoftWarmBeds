@@ -242,7 +242,7 @@ namespace SoftWarmBeds
             if (manuallyUnmakeBed)
             {
                 wantSwitchOn = !wantSwitchOn;
-                FlickUtility.UpdateFlickDesignation(this.parent);
+                FlickUtility.UpdateFlickDesignation(parent);
             }
             else RemoveBedding();
         }
@@ -258,7 +258,7 @@ namespace SoftWarmBeds
             {
                 Log.Warning("[SoftWarmBeds] Tried to unmake a bed with no loaded bedding!");
             }
-            if (GenPlace.TryPlaceThing(LoadedBedding, BaseBed.Position, BaseBed.Map, ThingPlaceMode.Near, null, null))
+            if (LoadedBedding.Destroyed || GenPlace.TryPlaceThing(LoadedBedding, BaseBed.Position, BaseBed.Map, ThingPlaceMode.Near, null, null))
             {
                 loadedBedding = null;
                 customBlanketColor = false;

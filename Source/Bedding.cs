@@ -1,6 +1,7 @@
-﻿using Verse;
+﻿using RimWorld;
+using Verse;
 
 namespace SoftWarmBeds
 {
-    public class Bedding : ThingWithComps { }
+    public class Bedding : Apparel { }
 }

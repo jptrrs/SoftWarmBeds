@@ -72,25 +72,25 @@ namespace SoftWarmBeds
             }
         }
 
-        //private float CurRotation
-        //{
-        //    get
-        //    {
-        //        return curRotationInt;
-        //    }
-        //    set
-        //    {
-        //        curRotationInt = value;
-        //        if (curRotationInt > 360f)
-        //        {
-        //            curRotationInt -= 360f;
-        //        }
-        //        if (curRotationInt < 0f)
-        //        {
-        //            curRotationInt += 360f;
-        //        }
-        //    }
-        //}
+        private float CurRotation
+        {
+            get
+            {
+                return curRotationInt;
+            }
+            set
+            {
+                curRotationInt = value;
+                if (curRotationInt > 360f)
+                {
+                    curRotationInt -= 360f;
+                }
+                if (curRotationInt < 0f)
+                {
+                    curRotationInt += 360f;
+                }
+            }
+        }
 
         //private bool Occupied => BaseBed.CurOccupants != null; 
 
@@ -189,33 +189,45 @@ namespace SoftWarmBeds
         {
             loadedBedding = bedding;
             blanketStuff = bedding.Stuff;
-            if (blanketDef != null)
-            {
-                blanket = ThingMaker.MakeThing(blanketDef, blanketStuff);
-                customBlanketColor = bedding.TryGetComp<CompColorable>().Active;
-                if (BaseBed.Faction != null) DrawBed();
-            }
+            GenerateBlanket();
             parent.Notify_ColorChanged();
             wantSwitchOn = true;
             switchOnInt = true;
         }
 
+        private void GenerateBlanket()
+        {
+            if (blanketDef == null || !Loaded) return;
+            blanket = ThingMaker.MakeThing(blanketDef, blanketStuff);
+            customBlanketColor = loadedBedding.TryGetComp<CompColorable>().Active;
+            if (Scribe.mode == LoadSaveMode.Inactive && BaseBed.Faction != null) DrawBed();
+        }
+
         public void LoadBedding(ThingDef stuff)
         {
             Thing bedding = ThingMaker.MakeThing(Props.beddingDef, stuff);
-            LoadBedding(bedding);
+            if (bedding != null) LoadBedding(bedding);
+            else Log.Error($"[SoftWarmBeds] Error creating {stuff.label} bedding for {parent}.");
         }
 
         public override void PostExposeData()
         {
-            Scribe_Deep.Look<Thing>(ref loadedBedding, "loadedBedding", new object[0]);
-            Scribe_Deep.Look<Thing>(ref blanket, "bedding", new object[0]);
-            Scribe_Defs.Look<ThingDef>(ref blanketStuff, "blanketStuff");
             Scribe_Deep.Look<StorageSettings>(ref settings, "settings", new object[] { this });
-            if (settings == null)
+            if (settings == null) SetUpStorageSettings();
+            Scribe_Defs.Look<ThingDef>(ref blanketStuff, "blanketStuff");
+            if (Scribe.mode != LoadSaveMode.Saving) //backward compatibility measure:
             {
-                SetUpStorageSettings();
+                bool oldLoaded = false;
+                Scribe_Values.Look<bool>(ref oldLoaded, "loaded", false, false);
+                if (oldLoaded && blanketStuff != null)
+                {
+                    Log.Message($"[SoftWarmBeds] {parent} was saved on the old format. Fixing it up with a neat {blanketStuff.label} bedding.");
+                    LoadBedding(blanketStuff);
+                    return;
+                }
             }
+            Scribe_Deep.Look<Thing>(ref loadedBedding, "loadedBedding", new object[0]);
+            GenerateBlanket();
         }
 
         public override void PostSplitOff(Thing bedding)

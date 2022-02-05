@@ -142,7 +142,7 @@
       <Beauty>-3</Beauty>
     </statBases>
     <apparel>
-      <careIfWornByCorpse>True</careIfWornByCorpse>
+      <careIfWornByCorpse>False</careIfWornByCorpse>
       <wearPerDay>0.04</wearPerDay>
     </apparel>
     <altitudeLayer>Item</altitudeLayer>

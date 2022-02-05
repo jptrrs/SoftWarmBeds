@@ -55,7 +55,6 @@ namespace SoftWarmBeds
             {
                 Pawn actor = makeTheBed.actor;
                 bedComp.LoadBedding(actor.CurJob.targetB.Thing);
-                //actor.carryTracker.innerContainer.ClearAndDestroyContents(DestroyMode.Vanish);
                 actor.carryTracker.innerContainer.Clear();
             };
             makeTheBed.defaultCompleteMode = ToilCompleteMode.Instant;

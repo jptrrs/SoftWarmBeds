@@ -5,7 +5,7 @@ using Verse;
 
 namespace SoftWarmBeds
 {
-    //test
+    //Wears down beddings as pawns sleep on it.
     [HarmonyPatch(typeof(Pawn), "TickRare")]
     public static class Pawn_TickRare_Patch
     {
@@ -24,7 +24,7 @@ namespace SoftWarmBeds
 
             Thing ap = bedComp.loadedBedding;
             float num = GenMath.RoundRandom(ap.def.apparel.wearPerDay);
-            Log.Message($"Wear damage for {ap.def} ({ap.HitPoints}/{ap.MaxHitPoints}): {num}");
+            //Log.Message($"Wear damage for {ap.def} ({ap.HitPoints}/{ap.MaxHitPoints}): {num}");
             if (num > 0)
             {
                 ap.TakeDamage(new DamageInfo(DamageDefOf.Deterioration, num, 0f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null));

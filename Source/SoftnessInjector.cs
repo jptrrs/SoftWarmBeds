@@ -61,7 +61,7 @@ namespace SoftWarmBeds
                 //stringBuilder.Append(thingDef.defName + ","+ ArmorGrade(thingDef) + "," + FurFactor(thingDef) + "," + ValueFactor(thingDef) + "," + statModifier.value+ ",");
                 stringBuilder.Append(thingDef.defName + " (" + statModifier.value.ToStringPercent() + "), ");
             }
-            Log.Message(stringBuilder.ToString().TrimEnd(new char[] { ' ', ',' }), false);
+            Log.Message(stringBuilder.ToString().TrimEnd(new char[] { ' ', ',' }));
         }
 
     }

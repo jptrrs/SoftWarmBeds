@@ -71,6 +71,11 @@ namespace SoftWarmBeds
             }
         }
 
+        public void Notify_SettingsChanged()
+        {
+            
+        }
+
         public bool StorageTabVisible
         {
             get

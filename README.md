@@ -3,8 +3,6 @@
 # [JPT] Soft Warm Beds
 A bed expansion for RimWorld.
 
-[**>>> DOWNLOAD IT HERE <<<**](https://github.com/jptrrs/SoftWarmBeds/releases/latest)
-
 Have you ever wondered why is it that we just need stone blocks or steel to build a bed, while wool and furs pile up in the warehouse, unused? Do you get a feeling it would be way more comfortable to lay down on something soft? And what if that cozy bed could also help with the freezing cold? Well, that's what this mod is all about!
 
 Now your beds will only provide full comfort if you add some mattress, pillows and a blanket - or a bedding set, to simplify. <b>These can be made at your regular tailor bench or crafting spot</b> after researching complex furniture. And depending on what they are made of, your beds can get even <i>more</i> comfortable than the regular ones, affecting their effectiveness in providing rest as well. Also, the material insulation properties carries over to the bed, helping keep your pawns warm and, therefore, <b>helping to prevent negative thoughts when sleeping in cold</b>.
